@@ -17,14 +17,14 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.event
 async def on_ready():
-    print("We are ready to go in, {bot.user.name}")
+    print(f"We are ready to go in, {bot.user.name}")
 
 @bot.event
 async def on_member_join(member):
     await member.send(f"Wellcome to the server {member.name}")
     
 @bot.event
-async def on_message(message):
+async def on_message(message):"
     
 
 bot.run(TOKEN, log_handler=handler, log_level=logging.DEBUG)
