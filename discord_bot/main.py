@@ -23,6 +23,9 @@ async def on_ready():
 async def on_member_join(member):
     await member.send(f"Wellcome to the server {member.name}")
     
+@bot.event
+async def on_message(message):
+    
 
 bot.run(TOKEN, log_handler=handler, log_level=logging.DEBUG)
 
