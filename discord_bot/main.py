@@ -19,6 +19,11 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print("We are ready to go in, {bot.user.name}")
 
+@bot.event
+async def on_member_join(member):
+    await member.send(f"Wellcome to the server {member.name}")
+    
+
 bot.run(TOKEN, log_handler=handler, log_level=logging.DEBUG)
 
 "https://realpython.com/how-to-make-a-discord-bot-python/"
