@@ -1,4 +1,6 @@
-# bot.py
+#---------------------------------
+# IMPORTING PYTON LIBRARIES
+#---------------------------------
 import os
 import discord
 from discord.ext import commands
@@ -6,6 +8,12 @@ from dotenv import load_dotenv
 import logging
 from PIL import Image
 import requests
+
+#---------------------------------
+# IMPORTING LLOCAL LIBRARIES
+#---------------------------------
+
+
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -33,12 +41,25 @@ async def on_message(message):
         channel = message.channel
         await channel.send("Ca-caw!")
 
-    if message.content == "cat":
-        channel = message.channel
-        data = requests.get(CAT_API).json()
-        await channel.send(data[0]["url"])
-
     await bot.process_commands(message)
+
+@bot.command()
+async def cat(ctx, *, argument=None):
+        data = requests.get(CAT_API).json()
+        await ctx.send(data[0]["url"])
+
+# -------------------------------
+# LOAD COGS
+# -------------------------------
+from cogs.moderation import Moderation
+import asyncio
+
+async def main():
+    async with bot:
+        await bot.add_cog(Moderation(bot))  # <- await here
+        await bot.start(TOKEN)
+
+asyncio.run(main())
 
 #@bot.command
 #async def 
