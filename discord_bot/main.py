@@ -4,9 +4,12 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import logging
+from PIL import Image
+import requests
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+CAT_API = "https://api.thecatapi.com/v1/images/search"
 
 handler = logging.FileHandler(filename='doscord.log', encoding='utf-8', mode='w')
 intents = discord.Intents.default()
@@ -25,12 +28,20 @@ async def on_member_join(member):
 
 @bot.event
 async def on_message(message):
-    if message.content == "craw":
+    msg = message.content
+    if msg.lower() == "ca caw":
         channel = message.channel
-        await channel.send("Craw")
+        await channel.send("Ca-caw!")
 
-@bot.command
-async def 
+    if message.content == "cat":
+        channel = message.channel
+        data = requests.get(CAT_API).json()
+        await channel.send(data[0]["url"])
+
+    await bot.process_commands(message)
+
+#@bot.command
+#async def 
 
 #@bot.event
 #async def on_message(message):"
