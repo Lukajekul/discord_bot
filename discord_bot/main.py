@@ -56,7 +56,7 @@ import asyncio
 
 async def main():
     async with bot:
-        await bot.add_cog(Moderation(bot))  # <- await here
+        await bot.add_cog(Moderation(bot))
         await bot.start(TOKEN)
 
 asyncio.run(main())
