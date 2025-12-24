@@ -22,9 +22,18 @@ async def on_ready():
 @bot.event
 async def on_member_join(member):
     await member.send(f"Wellcome to the server {member.name}")
-    
+
 @bot.event
-async def on_message(message):"
+async def on_message(message):
+    if message.content == "craw":
+        channel = message.channel
+        await channel.send("Craw")
+
+@bot.command
+async def 
+
+#@bot.event
+#async def on_message(message):"
     
 
 bot.run(TOKEN, log_handler=handler, log_level=logging.DEBUG)
